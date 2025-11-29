@@ -11,12 +11,12 @@
                 <span class="text-2xl font-bold text-gray-800">QuizCraft</span>
             </div>
             <div class="flex space-x-4">
-                <button on:click={showAuthForms} class="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                <a href="/login" class="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                     Sign In
-                </button>
-                <button on:click={showAuthForms} class="bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                </a>
+                <a href="/register" class="bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Get Started
-                </button>
+                </a>
             </div>
         </nav>
 

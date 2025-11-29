@@ -1,38 +1,69 @@
-# sv
+# Quiz App
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A full-stack quiz application with Django backend and SvelteKit frontend.
 
-## Creating a project
+## Project Structure
 
-If you're seeing this, you've probably already done this step. Congrats!
+- `backend/` - Django REST API
+- `frontend/` - SvelteKit web application
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Setup
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Backend (Django)
 
-## Developing
+1. Navigate to backend directory:
+   ```bash
+   cd backend
+   ```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+2. Activate virtual environment:
+   ```bash
+   # On Windows
+   .venv\Scripts\activate
+   ```
 
-```sh
-npm run dev
+3. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+4. Start server:
+   ```bash
+   python manage.py runserver
+   ```
 
-## Building
+Backend will be available at `http://localhost:8000`
 
-To create a production version of your app:
+### Frontend (SvelteKit)
 
-```sh
-npm run build
-```
+1. Navigate to frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-You can preview the production build with `npm run preview`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+3. Start dev server:
+   ```bash
+   npm run dev
+   ```
+
+Frontend will be available at `http://localhost:5174`
+
+## Features
+
+- User registration and login
+- Create and manage quizzes
+- Add questions to quizzes
+- Responsive web interface
+
+## API Endpoints
+
+- `POST /api/auth/register/` - Register new user (returns JWT tokens)
+- `POST /api/auth/login/` - Login user (returns JWT tokens)
+- `GET /api/quizzes/` - List user's quizzes (requires auth)
+- `POST /api/quizzes/` - Create new quiz (requires auth)
+- `POST /api/questions/` - Create new question (requires auth)
