@@ -27,18 +27,19 @@ export {};
 
 declare module "$app/types" {
 	export interface AppTypes {
-		RouteId(): "/" | "/create-question" | "/login" | "/register";
+		RouteId(): "/" | "/create-question" | "/landing" | "/login" | "/register";
 		RouteParams(): {
 			
 		};
 		LayoutParams(): {
 			"/": Record<string, never>;
 			"/create-question": Record<string, never>;
+			"/landing": Record<string, never>;
 			"/login": Record<string, never>;
 			"/register": Record<string, never>
 		};
-		Pathname(): "/" | "/create-question" | "/create-question/" | "/login" | "/login/" | "/register" | "/register/";
+		Pathname(): "/" | "/create-question" | "/create-question/" | "/landing" | "/landing/" | "/login" | "/login/" | "/register" | "/register/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/robots.txt" | string & {};
+		Asset(): "/css/style.css" | "/js/quiz.js" | "/js/upload.js" | "/pages/login.html" | "/pages/register.html" | "/robots.txt" | string & {};
 	}
 }

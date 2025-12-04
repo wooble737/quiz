@@ -1,4 +1,41 @@
 <script>
+  import { onMount } from 'svelte';
+
+  let formData = {
+    full_name: '',
+    email: '',
+    password1: '',
+    password2: ''
+  };
+
+  function submit(e) {
+    e.preventDefault();
+    // TODO: wire this to your backend API; currently just logs
+    console.log('register submit', formData);
+    // Example: fetch('/api/register', { method: 'POST', body: JSON.stringify(formData) })
+  }
+</script>
+
+<svelte:head>
+  <title>Register — Quiz Maker</title>
+</svelte:head>
+
+<main class="container" style="padding: 40px 20px;">
+  <h1 id="formTitle">Register</h1>
+  <div class="auth-card">
+    <form id="registerForm" on:submit={submit}>
+      <input bind:value={formData.full_name} type="text" name="full_name" class="form-control" placeholder="Full Name" />
+      <input bind:value={formData.email} type="email" name="email" class="form-control" placeholder="Email" />
+      <input bind:value={formData.password1} type="password" name="password1" class="form-control" placeholder="Password" />
+      <input bind:value={formData.password2} type="password" name="password2" class="form-control" placeholder="Confirm Password" />
+      <button type="submit" class="cta-btn">Register</button>
+      <p class="mt-3">Already have an account?
+        <a href="/login" class="toggle-link">Log In</a>
+      </p>
+    </form>
+  </div>
+</main>
+<script>
 	let name = '';
 	let email = '';
 	let password = '';

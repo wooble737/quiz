@@ -1,4 +1,5 @@
 <script>
+	// Single-script login page using email/password and fetch to backend
 	let email = '';
 	let password = '';
 	let error = '';
@@ -10,14 +11,11 @@
 		try {
 			const response = await fetch('http://localhost:8000/api/auth/login/', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ username: email, password }),
 			});
 			const data = await response.json();
 			if (response.ok) {
-				alert('Login successful!');
 				// Store tokens
 				localStorage.setItem('access_token', data.tokens.access);
 				localStorage.setItem('refresh_token', data.tokens.refresh);
@@ -32,6 +30,10 @@
 		loading = false;
 	}
 </script>
+
+<svelte:head>
+	<title>Log In — Quiz Maker</title>
+</svelte:head>
 
 <div class="min-h-screen flex items-center justify-center bg-gray-50">
 	<div class="max-w-md w-full space-y-8">

@@ -82,12 +82,13 @@
 
 			{#if questionType === 'multiple-choice'}
 				<div>
-					<label class="block text-sm font-medium text-gray-700 mb-2">Options</label>
-					{#each options as option, index}
+					<label for="options" class="block text-sm font-medium text-gray-700 mb-2">Options</label>
+					<div id="options" class="space-y-2">
+						{#each options as option, index}
 						<div class="flex items-center space-x-2 mb-2">
 							<input
 								type="text"
-								bind:value={options[index]}
+									bind:value={opt.value}
 								class="flex-1 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
 								placeholder={`Option ${index + 1}`}
 							/>
@@ -101,6 +102,7 @@
 							</button>
 						</div>
 					{/each}
+					</div>
 					<button
 						type="button"
 						on:click={addOption}
