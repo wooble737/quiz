@@ -98,15 +98,27 @@ generateBtn.addEventListener('click', async () => {
     formData.append('file', selectedFile);
     
     try {
-        const response = await fetch('/process-file', {
+        const token = localStorage.getItem('access_token');
+        
+        if (!token) {
+            throw new Error('Please login first to upload files');
+        }
+        
+        const response = await fetch('http://localhost:8000/api/upload/', {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
             body: formData
         });
         
         const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.error || 'Failed to process file');
+            if (response.status === 401) {
+                throw new Error('Session expired. Please login again');
+            }
+            throw new Error(data.error || data.detail || 'Failed to process file');
         }
         
         // Redirect to quiz page

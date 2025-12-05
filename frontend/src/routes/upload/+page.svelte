@@ -1,0 +1,94 @@
+<svelte:head>
+  <title>Upload File - Quiz Maker</title>
+  <script src="/js/upload.js" defer></script>
+</svelte:head>
+
+<div style="width: 100%; min-height: 100vh; padding: 40px 20px;">
+  <div class="container">
+    <header class="header">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <span>THE BEST</span>
+        <span style="color: var(--color-primary);">Quiz Maker</span>
+      </a>
+      <button on:click={() => window.location.href='/'} class="btn-outline">
+        Back to Home
+      </button>
+    </header>
+
+    <div style="text-align: center; margin-bottom: 40px;">
+      <h1>Upload Your File</h1>
+      <p style="color: var(--color-text-secondary); margin-top: 10px;">
+        Upload a PDF or image file to generate a quiz
+      </p>
+    </div>
+
+    <!-- Loading Spinner (hidden by default) -->
+    <div id="loading-spinner" class="loading-spinner" style="display: none;">
+      <div class="spinner"></div>
+      <p style="margin-top: 20px; color: var(--color-text-secondary);">
+        Processing your file and generating quiz...
+      </p>
+    </div>
+
+    <!-- File Upload Area -->
+    <div id="upload-area">
+      <div class="file-upload-area">
+        <div class="drag-drop-zone" id="drop-zone">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 20px; color: var(--color-secondary); display: block;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <p style="color: var(--color-primary); margin-bottom: 8px;">
+            Drag and drop your file here, or click to browse
+          </p>
+          <p style="color: var(--color-text-secondary); font-size: 0.9rem;">
+            Supports PDF and JPG/PNG files
+          </p>
+          <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+        </div>
+
+        <!-- File Info (hidden by default) -->
+        <div id="file-info" class="file-info" style="display: none;">
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <svg id="file-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <div>
+              <p id="file-name" style="font-weight: 600; margin-bottom: 4px;"></p>
+              <p id="file-size" style="opacity: 0.9; font-size: 0.9rem;"></p>
+            </div>
+          </div>
+          <button id="generate-btn" style="background: white; color: var(--color-secondary); padding: 12px 30px; border-radius: 50px; border: none; font-weight: 600; cursor: pointer;">
+            Generate Quiz
+          </button>
+        </div>
+
+        <!-- Error Message (hidden by default) -->
+        <div id="error-message" style="display: none; margin-top: 20px; padding: 15px; background-color: #FEE2E2; border: 1px solid #FCA5A5; border-radius: 10px; color: #DC2626;">
+        </div>
+      </div>
+
+      <div class="card-grid" style="margin-top: 40px;">
+        <div class="quiz-card card-1">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 15px; display: block;">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <h3>PDF Documents</h3>
+          <p>Upload PDF files containing text content like articles, study materials, or reports</p>
+        </div>
+        <div class="quiz-card card-4">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 15px; display: block;">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <h3>Images</h3>
+          <p>Upload JPG or PNG images with text. We'll use OCR to extract the text content</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

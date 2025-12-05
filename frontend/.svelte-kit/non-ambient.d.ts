@@ -27,19 +27,18 @@ export {};
 
 declare module "$app/types" {
 	export interface AppTypes {
-		RouteId(): "/" | "/create-question" | "/landing" | "/login" | "/register";
+		RouteId(): "/" | "/login" | "/register" | "/upload";
 		RouteParams(): {
 			
 		};
 		LayoutParams(): {
 			"/": Record<string, never>;
-			"/create-question": Record<string, never>;
-			"/landing": Record<string, never>;
 			"/login": Record<string, never>;
-			"/register": Record<string, never>
+			"/register": Record<string, never>;
+			"/upload": Record<string, never>
 		};
-		Pathname(): "/" | "/create-question" | "/create-question/" | "/landing" | "/landing/" | "/login" | "/login/" | "/register" | "/register/";
+		Pathname(): "/" | "/login" | "/login/" | "/register" | "/register/" | "/upload" | "/upload/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/css/style.css" | "/js/quiz.js" | "/js/upload.js" | "/pages/login.html" | "/pages/register.html" | "/robots.txt" | string & {};
+		Asset(): "/css/style.css" | "/js/quiz.js" | "/js/upload.js" | "/pages/login.html" | "/pages/register.html" | "/pages/upload.html" | "/robots.txt" | string & {};
 	}
 }
