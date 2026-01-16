@@ -27,18 +27,20 @@ export {};
 
 declare module "$app/types" {
 	export interface AppTypes {
-		RouteId(): "/" | "/create-question" | "/login" | "/register";
+		RouteId(): "/" | "/login" | "/register" | "/test_type" | "/test_type/[quizId]" | "/upload";
 		RouteParams(): {
-			
+			"/test_type/[quizId]": { quizId: string }
 		};
 		LayoutParams(): {
-			"/": Record<string, never>;
-			"/create-question": Record<string, never>;
+			"/": { quizId?: string };
 			"/login": Record<string, never>;
-			"/register": Record<string, never>
+			"/register": Record<string, never>;
+			"/test_type": { quizId?: string };
+			"/test_type/[quizId]": { quizId: string };
+			"/upload": Record<string, never>
 		};
-		Pathname(): "/" | "/create-question" | "/create-question/" | "/login" | "/login/" | "/register" | "/register/";
+		Pathname(): "/" | "/login" | "/login/" | "/register" | "/register/" | "/test_type" | "/test_type/" | `/test_type/${string}` & {} | `/test_type/${string}/` & {} | "/upload" | "/upload/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/robots.txt" | string & {};
+		Asset(): "/css/style.css" | "/js/quiz.js" | "/js/upload.js" | "/robots.txt" | string & {};
 	}
 }

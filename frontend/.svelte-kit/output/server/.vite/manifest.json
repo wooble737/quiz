@@ -9,13 +9,6 @@
       "_environment.js"
     ]
   },
-  "_attributes.js": {
-    "file": "chunks/attributes.js",
-    "name": "attributes",
-    "imports": [
-      "_escaping.js"
-    ]
-  },
   "_context.js": {
     "file": "chunks/context.js",
     "name": "context"
@@ -28,10 +21,6 @@
     "file": "chunks/equality.js",
     "name": "equality"
   },
-  "_escaping.js": {
-    "file": "chunks/escaping.js",
-    "name": "escaping"
-  },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports",
@@ -43,7 +32,6 @@
     "file": "chunks/index.js",
     "name": "index",
     "imports": [
-      "_attributes.js",
       "_context.js"
     ]
   },
@@ -84,11 +72,10 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
     "isEntry": true,
     "imports": [
-      "_escaping.js",
+      "_context.js",
       "_equality.js",
       "_exports.js",
-      "_utils.js",
-      "_context.js"
+      "_utils.js"
     ]
   },
   "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
@@ -110,8 +97,7 @@
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js",
-      "_attributes.js"
+      "_index.js"
     ]
   },
   "src/routes/+page.svelte": {
@@ -127,8 +113,16 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_escaping.js",
-      "_attributes.js"
+      "_context.js"
+    ]
+  },
+  "src/routes/landing/+page.svelte": {
+    "file": "entries/pages/landing/_page.svelte.js",
+    "name": "entries/pages/landing/_page.svelte",
+    "src": "src/routes/landing/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
     ]
   },
   "src/routes/login/+page.svelte": {
@@ -137,8 +131,8 @@
     "src": "src/routes/login/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_attributes.js",
-      "_escaping.js"
+      "_index.js",
+      "_context.js"
     ]
   },
   "src/routes/register/+page.svelte": {
@@ -147,8 +141,8 @@
     "src": "src/routes/register/+page.svelte",
     "isEntry": true,
     "imports": [
-      "_attributes.js",
-      "_escaping.js"
+      "_index.js",
+      "_context.js"
     ]
   }
 }

@@ -1,6 +1,5 @@
-import { x as ensure_array_like } from "../../../chunks/index.js";
-import { e as escape_html } from "../../../chunks/escaping.js";
-import { a as attr } from "../../../chunks/attributes.js";
+import { z as ensure_array_like, y as attr } from "../../../chunks/index.js";
+import { e as escape_html } from "../../../chunks/context.js";
 function _page($$renderer) {
   let question = "";
   let questionType = "multiple-choice";
@@ -34,13 +33,13 @@ function _page($$renderer) {
   $$renderer.push(`</div> `);
   {
     $$renderer.push("<!--[-->");
-    $$renderer.push(`<div><label class="block text-sm font-medium text-gray-700 mb-2">Options</label> <!--[-->`);
+    $$renderer.push(`<div><label for="options" class="block text-sm font-medium text-gray-700 mb-2">Options</label> <div id="options" class="space-y-2"><!--[-->`);
     const each_array = ensure_array_like(options);
     for (let index = 0, $$length = each_array.length; index < $$length; index++) {
       each_array[index];
-      $$renderer.push(`<div class="flex items-center space-x-2 mb-2"><input type="text"${attr("value", options[index])} class="flex-1 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"${attr("placeholder", `Option ${index + 1}`)}/> <button type="button" class="text-red-600 hover:text-red-800"${attr("disabled", options.length <= 2, true)}>Remove</button></div>`);
+      $$renderer.push(`<div class="flex items-center space-x-2 mb-2"><input type="text"${attr("value", opt.value)} class="flex-1 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"${attr("placeholder", `Option ${index + 1}`)}/> <button type="button" class="text-red-600 hover:text-red-800"${attr("disabled", options.length <= 2, true)}>Remove</button></div>`);
     }
-    $$renderer.push(`<!--]--> <button type="button" class="mt-2 text-indigo-600 hover:text-indigo-500">+ Add Option</button></div> <div><label for="correctAnswer" class="block text-sm font-medium text-gray-700">Correct Answer</label> `);
+    $$renderer.push(`<!--]--></div> <button type="button" class="mt-2 text-indigo-600 hover:text-indigo-500">+ Add Option</button></div> <div><label for="correctAnswer" class="block text-sm font-medium text-gray-700">Correct Answer</label> `);
     $$renderer.select(
       {
         id: "correctAnswer",
