@@ -1,5 +1,38 @@
 <script>
   import './home.css';
+  import { onMount } from 'svelte';
+
+  let loggedIn = false;
+  let checking = true;
+
+  onMount(async () => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      loggedIn = false;
+      checking = false;
+      return;
+    }
+    // Validate token with a lightweight authenticated request
+    try {
+      const res = await fetch('http://localhost:8000/api/quizzes/', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      loggedIn = res.ok;
+    } catch {
+      loggedIn = false;
+    } finally {
+      checking = false;
+    }
+  });
+
+  const handleCreateQuiz = () => {
+    const token = localStorage.getItem('access_token');
+    if (!token || !loggedIn) {
+      window.location.href = '/login';
+    } else {
+      window.location.href = '/upload';
+    }
+  };
 </script>
 
 <svelte:head>
@@ -14,9 +47,13 @@
         <span>THE BEST</span>
         <span style="color: var(--color-primary);">Quiz Maker</span>
       </div>
-      <button on:click={() => window.location.href = '/upload'} class="cta-btn">
-        Create Quiz
-      </button>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span style="font-size:0.9rem; color: var(--color-text-secondary);">
+        </span>
+        <button on:click={handleCreateQuiz} class="cta-btn">
+          Generate Quiz
+        </button>
+      </div>
     </header>
 
     <!-- Hero Section -->

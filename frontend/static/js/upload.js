@@ -101,7 +101,8 @@ generateBtn.addEventListener('click', async () => {
         const token = localStorage.getItem('access_token');
         
         if (!token) {
-            throw new Error('Please login first to upload files');
+            window.location.href = '/login';
+            return;
         }
         
         const response = await fetch('http://localhost:8000/api/upload/', {
@@ -116,13 +117,14 @@ generateBtn.addEventListener('click', async () => {
         
         if (!response.ok) {
             if (response.status === 401) {
-                throw new Error('Session expired. Please login again');
+                window.location.href = '/login';
+                return;
             }
             throw new Error(data.error || data.detail || 'Failed to process file');
         }
         
-        // Redirect to quiz page
-        window.location.href = `/quiz/${data.quiz_id}`;
+        // Redirect to generated test view
+        window.location.href = `/test_type/${data.quiz_id}`;
         
     } catch (error) {
         loadingSpinner.style.display = 'none';

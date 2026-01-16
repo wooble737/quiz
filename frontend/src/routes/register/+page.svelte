@@ -45,7 +45,7 @@
 	<title>Register — Quiz Maker</title>
 </svelte:head>
 
-<div class="flex-column">
+<div class="flex-column d-flex justify-content-center align-items-center" style="min-height: 100vh">
 	<h1 id="formTitle">Register</h1>
 	<div class="auth-card">
 		<form on:submit|preventDefault={handleSubmit}>

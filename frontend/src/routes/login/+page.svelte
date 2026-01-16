@@ -18,7 +18,7 @@
 				localStorage.setItem('access_token', data.tokens.access);
 				localStorage.setItem('refresh_token', data.tokens.refresh);
 				localStorage.setItem('user', JSON.stringify(data.user));
-				window.location.href = '/';
+				window.location.href = '/upload';
 			} else {
 				error = data.detail || 'Login failed';
 			}
@@ -33,7 +33,7 @@
 	<title>Log In — Quiz Maker</title>
 </svelte:head>
 
-<div class="flex-column">
+<div class="flex-column d-flex justify-content-center align-items-center" style="min-height: 100vh">
 	<h1 id="formTitle">Log In</h1>
 	<div class="auth-card">
 		<form on:submit|preventDefault={handleSubmit}>
